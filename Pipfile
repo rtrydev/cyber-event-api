@@ -7,6 +7,7 @@ name = "pypi"
 flask = "2.2.2"
 flask-injector = "0.14.0"
 azure-cosmos = "4.3.0"
+waitress = "2.1.2"
 
 [dev-packages]
 
