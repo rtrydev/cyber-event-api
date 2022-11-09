@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 flask = "2.2.2"
 flask-injector = "0.14.0"
+azure-cosmos = "4.3.0"
 
 [dev-packages]
 
