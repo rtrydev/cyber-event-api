@@ -35,3 +35,17 @@ class CosmosReportingRepository(ReportingRepository):
         ]
 
         return reports
+
+    def add(self, report: ReportingModel) -> None:
+        db = self.db_provider.get_database()
+        container = db.get_container_client('ReportingDb')
+
+        container.upsert_item(
+            {
+                "id": str(uuid4()),
+                "timestamp": report.timestamp,
+                "user_id": report.user_id,
+                "username": report.username,
+                "event_type": report.event_type
+            }
+        )
