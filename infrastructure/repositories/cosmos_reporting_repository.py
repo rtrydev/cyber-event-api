@@ -24,6 +24,8 @@ class CosmosReportingRepository(ReportingRepository):
             enable_cross_partition_query=True
         )
 
+        valid_events = set(item.value for item in EventTypes)
+
         reports = [
             ReportingModel(
                 user_id=item.get("user_id"),
@@ -32,6 +34,7 @@ class CosmosReportingRepository(ReportingRepository):
                 event_type=EventTypes(item.get("event_type"))
             )
             for item in items
+            if item.get("event_type") in valid_events
         ]
 
         return reports
