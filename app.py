@@ -4,18 +4,16 @@ from flask import Flask
 from flask_injector import FlaskInjector
 from injector import singleton
 
-from application.event_handler.event_handler import EventHandler
+from application.event_handler.message_handler import MessageHandler
 from extensions.dependency_injection import configure
 from extensions.routes_extension import register_routes
-from infrastructure.message_service.message_bus import MessageBus
 
 app = Flask(__name__)
 
 register_routes(app)
 di_container = FlaskInjector(app=app, modules=[configure])
 
-event_bus = di_container.injector.get(interface=MessageBus, scope=singleton)
-event_handler = EventHandler(event_bus)
+event_handler = di_container.injector.get(interface=MessageHandler, scope=singleton)
 
 thread = Thread(target=event_handler.handle_messages)
 thread.start()

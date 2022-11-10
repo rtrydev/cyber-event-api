@@ -1,6 +1,8 @@
 from injector import singleton
 
 from application.api.controllers.reporting_controller import ReportingController
+from application.event_handler.message_handler import MessageHandler
+from application.event_handler.reporting_message_handler import ReportingMessageHandler
 from domain.repositories.reporting_repository import ReportingRepository
 from infrastructure.db.cosmos_database_provider import CosmosDatabaseProvider
 from infrastructure.db.database_provider import DatabaseProvider
@@ -14,3 +16,4 @@ def configure(binder):
     binder.bind(ReportingController, to=ReportingController, scope=singleton)
     binder.bind(DatabaseProvider, to=CosmosDatabaseProvider, scope=singleton)
     binder.bind(MessageBus, to=AzureServiceBus, scope=singleton)
+    binder.bind(MessageHandler, to=ReportingMessageHandler, scope=singleton)
