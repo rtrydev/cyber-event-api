@@ -31,10 +31,10 @@ class CosmosReportingRepository(ReportingRepository):
                 user_id=item.get("user_id"),
                 username=item.get("username"),
                 timestamp=item.get("timestamp"),
-                event_type=EventTypes(item.get("event_type"))
+                event_type=EventTypes((item.get("event_type"),))
             )
             for item in items
-            if item.get("event_type") in valid_events
+            if (item.get("event_type"),) in valid_events
         ]
 
         return reports
@@ -43,12 +43,13 @@ class CosmosReportingRepository(ReportingRepository):
         db = self.db_provider.get_database()
         container = db.get_container_client('ReportingDb')
 
+        print(report.event_type.value[0])
         container.upsert_item(
             {
                 "id": str(uuid4()),
                 "timestamp": report.timestamp,
                 "user_id": report.user_id,
                 "username": report.username,
-                "event_type": report.event_type
+                "event_type": report.event_type.value[0]
             }
         )

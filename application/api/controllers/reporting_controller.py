@@ -17,7 +17,7 @@ class ReportingController:
                 user_id=report.user_id,
                 username=report.username,
                 timestamp=report.timestamp,
-                event_type=str(report.event_type.value)
+                event_type=str(report.event_type.value[0])
             ))
 
         return result
