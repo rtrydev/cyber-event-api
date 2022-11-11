@@ -2,7 +2,7 @@ from flask import Blueprint
 from injector import inject
 from ..controllers.reporting_controller import ReportingController
 
-reporting_blueprint = Blueprint('reporting_routes', __name__, url_prefix='/reporting')
+reporting_blueprint = Blueprint('reporting_routes', __name__)
 
 
 @inject
