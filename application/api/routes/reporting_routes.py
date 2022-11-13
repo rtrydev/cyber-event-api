@@ -2,11 +2,11 @@ from flask import Blueprint
 from injector import inject
 from ..controllers.reporting_controller import ReportingController
 
-reporting_blueprint = Blueprint('reporting_routes', __name__)
+reporting = Blueprint('reporting_routes', __name__, url_prefix='/reporting')
 
 
 @inject
-@reporting_blueprint.route('/', methods=['GET'])
+@reporting.route('/', methods=['GET'])
 def get_all(controller: ReportingController):
     return controller.get_reports()
 

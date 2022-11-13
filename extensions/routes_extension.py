@@ -1,6 +1,6 @@
-from application.api.routes.reporting_routes import reporting_blueprint
+from application.api.routes.reporting_routes import reporting
 
 
 def register_routes(app):
-    app.register_blueprint(reporting_blueprint)
+    app.register_blueprint(reporting)
 
