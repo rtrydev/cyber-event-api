@@ -31,7 +31,9 @@ class CosmosReportingRepository(ReportingRepository):
                 user_id=item.get("user_id"),
                 username=item.get("username"),
                 timestamp=item.get("timestamp"),
-                event_type=EventTypes(item.get("event_type"))
+                event_type=EventTypes(item.get("event_type")),
+                old_role=item.get("old_role"),
+                new_role=item.get("new_role")
             )
             for item in items
             if item.get("event_type") in valid_events
