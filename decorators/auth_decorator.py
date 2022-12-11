@@ -2,7 +2,7 @@ import functools
 import os
 import jwt
 from flask import request, Response
-from jwt import DecodeError
+from jwt import DecodeError, ExpiredSignatureError
 
 
 def auth(required_role: list):
@@ -18,6 +18,8 @@ def auth(required_role: list):
             try:
                 result = jwt.decode(token, os.environ['JWT_SECRET'], ["HS256"])
             except DecodeError:
+                return Response(status=401)
+            except ExpiredSignatureError:
                 return Response(status=401)
 
             claim_role = result.get('role')
