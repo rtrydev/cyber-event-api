@@ -8,3 +8,5 @@ class ReportingModel:
     username: str
     timestamp: int
     event_type: EventTypes
+    old_role: str = None
+    new_role: str = None

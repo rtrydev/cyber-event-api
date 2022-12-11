@@ -7,3 +7,5 @@ class ReportingReadDto:
     username: str
     timestamp: int
     event_type: str
+    old_role: str
+    new_role: str
