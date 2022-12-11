@@ -8,6 +8,7 @@ class EventTypes(Enum):
     UserDeleted = "user_deleted"
     UserPasswordChanged = "user_password_changed"
     UserPasswordReset = "user_password_reset"
+    UserRoleChanged = "user_role_changed"
 
 
 map_event = {
@@ -16,5 +17,6 @@ map_event = {
     "UserCreated": EventTypes.UserCreated,
     "UserDeleted": EventTypes.UserDeleted,
     "UserPasswordChanged": EventTypes.UserPasswordChanged,
-    "UserPasswordReset": EventTypes.UserPasswordReset
+    "UserPasswordReset": EventTypes.UserPasswordReset,
+    "UserRoleChanged": EventTypes.UserRoleChanged
 }
